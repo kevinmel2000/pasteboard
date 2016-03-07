@@ -112,7 +112,7 @@ post.upload = (req, res) ->
       return res.send "File too large", 500
 
     fileName = helpers.generateFileName(file.type.replace "image/", "")
-    domain = if req.app.get "localrun" then req.headers.host else req.app.get "domain"
+    domain = if req.app.get "localrun" then "#{req.protocol}://#{req.headers.host}" else req.app.get "domain"
     longURL = "#{domain}/#{fileName}"
     sourcePath = file.path
 
